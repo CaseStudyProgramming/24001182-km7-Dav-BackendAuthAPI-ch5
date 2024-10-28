@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model caroptions {
+  id          BigInt    @id @default(autoincrement())
+  option_name String?   @db.VarChar(255)
+  options     options[]
+}
+
+model cars {
+  id              BigInt        @id @default(autoincrement())
+  plate           String?       @db.VarChar(255)
+  image           String?       @db.VarChar(255)
+  rentperday      Int?
+  capacity        Int?
+  description     String?
+  availableat     DateTime?     @db.Timestamp(6)
+  available       Boolean?
+  year            Int?
+  transmission_id BigInt?
+  type_id         BigInt?
+  manufacture_id  BigInt?
+  model_id        BigInt?
+  manufacture     manufacture?  @relation(fields: [manufacture_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  model           model?        @relation(fields: [model_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  transmission    transmission? @relation(fields: [transmission_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  type            type?         @relation(fields: [type_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  options         options[]
+  specs           specs[]
+}
+
+model carspecs {
+  id        BigInt  @id @default(autoincrement())
+  spec_name String? @db.VarChar(255)
+  specs     specs[]
+}
+
+model manufacture {
+  id               BigInt  @id @default(autoincrement())
+  manufacture_name String? @db.VarChar(255)
+  cars             cars[]
+}
+
+model model {
+  id         BigInt  @id @default(autoincrement())
+  model_name String? @db.VarChar(255)
+  cars       cars[]
+}
+
+model options {
+  option_id  BigInt
+  car_id     BigInt
+  cars       cars       @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  caroptions caroptions @relation(fields: [option_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([option_id, car_id])
+}
+
+model specs {
+  spec_id  BigInt
+  car_id   BigInt
+  cars     cars     @relation(fields: [car_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  carspecs carspecs @relation(fields: [spec_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  @@id([spec_id, car_id])
+}
+
+model transmission {
+  id                  BigInt  @id @default(autoincrement())
+  transmission_option String? @db.VarChar(255)
+  cars                cars[]
+}
+
+model type {
+  id          BigInt  @id @default(autoincrement())
+  type_option String? @db.VarChar(255)
+  cars        cars[]
+}
+
+model users {
+  id              BigInt  @id(map: "users_pk") @default(autoincrement())
+  name            String  @db.VarChar
+  email           String  @unique(map: "users_email_idx") @db.VarChar
+  password        String  @db.VarChar
+  profile_picture String? @db.VarChar
+  role_id         Int     @default(2)
+}
