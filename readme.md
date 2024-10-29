@@ -1,15 +1,17 @@
-# Car Listing API Tim 6 Ch4
+# CarRen Auth API
 
-This is a car listing API developed with Express.js, Prisma ORM, and PostgreSQL.
+This is a car auth API developed with Express.js, Prisma ORM, and PostgreSQL.
 
 ## Team Members
-- **Rheno Julius Andreas**: Responsible for cars, specs, car specs and some car option.
-- **David Cristian Putra Sutanto**: Responsible for manufacture, model, and type.
-- **M. Zaky Pria Maulana**: Responsible for car options, options, and transmission.
+- **David Cristian Putra Sutanto**: Responsible for Auth.
 
 ## Project Links
-- **Deployment (Render)**: [Live Deployment](https://backend-vtpc.onrender.com)
-- **Postman Documentation**: [API Docs](https://documenter.getpostman.com/view/30704956/2sAXxWbABk)
-- **ERD Database Diagram**: [Database Diagram](https://dbdiagram.io/d/ch4-670e6f8797a66db9a30d9323)
-- **Github Tim 6**: [Tim 6 Github Repository](https://github.com/Km7-Binar-Tim6/Backend)
+- **Postman Documentation**: [API Docs](https://documenter.getpostman.com/view/30704956/2sAY4uCPEK)
 
+## Account
+- **Role_id**: 1 (Admin)
+- **Email**: test1@email.com
+- **Password**: 12345678
+
+## ⚠️ Warning ⚠️
+> **Important**: As an admin, please note that the access token will expire 1 hour (1h) after you log in.

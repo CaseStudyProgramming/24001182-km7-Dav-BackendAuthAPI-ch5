@@ -27,13 +27,12 @@ router.use("/type", authorize, routesType);
 router.use("/manufacture", authorize, routesManufacture);
 router.use("/model", authorize, routesModel);
 
-// Terapkan middleware authorize hanya untuk rute CRUD
-router.use("/cars", routesCars); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
-router.use("/carspecs", authorize, routesCarSpecs); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
-router.use("/specs", authorize, routesSpecs); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
+router.use("/cars", routesCars);
+router.use("/carspecs", authorize, routesCarSpecs);
+router.use("/specs", authorize, routesSpecs);
 
-router.use("/options", authorize, routeOptions); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
-router.use("/caroptions", authorize, routeCarOptions); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
-router.use("/transmission", authorize, routeTransmission); // Hanya pengguna dengan role_id 1 yang bisa mengakses rute ini
+router.use("/options", authorize, routeOptions);
+router.use("/caroptions", authorize, routeCarOptions);
+router.use("/transmission", authorize, routeTransmission);
 
 module.exports = router;

@@ -38,7 +38,6 @@ exports.register = async (req, res) => {
       return res.status(409).json({ message: "Email is already registered." });
     }
 
-    // Upload gambar profil jika ada
     let profilePictureUrl = null;
     if (req.files && req.files.profile_picture) {
       profilePictureUrl = await imageUpload(req.files.profile_picture);
@@ -52,16 +51,14 @@ exports.register = async (req, res) => {
         email,
         password: hashedPassword,
         profile_picture: profilePictureUrl,
-        role_id: 2, // Role default untuk pengguna biasa
+        role_id: 2,
       },
     });
 
-    // Hapus password sebelum mengirim respons
     delete newUser.password;
 
-    // Ubah ID menjadi string jika perlu
     const userResponse = {
-      id: newUser.id.toString(), // Pastikan ID dikonversi ke string
+      id: newUser.id.toString(),
       name: newUser.name,
       email: newUser.email,
       profile_picture: newUser.profile_picture,
@@ -108,9 +105,8 @@ exports.login = async (req, res) => {
       return res.status(500).json({ message: "Internal server error." });
     }
 
-    // Generate token with role information
     const token = jwt.sign(
-      { id: user.id.toString(), role_id: user.role_id }, // Include role_id in the token payload
+      { id: user.id.toString(), role_id: user.role_id },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
@@ -120,7 +116,7 @@ exports.login = async (req, res) => {
       JSONbig.stringify({
         message: "Login successful",
         token,
-        role_id: user.role_id, // Include role_id in the response
+        role_id: user.role_id,
       })
     );
   } catch (error) {
