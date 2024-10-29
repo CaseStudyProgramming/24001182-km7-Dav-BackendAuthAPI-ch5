@@ -15,3 +15,4 @@ This is a car auth API developed with Express.js, Prisma ORM, and PostgreSQL.
 
 ## ⚠️ Warning ⚠️
 > **Important**: As an admin, please note that the access token will expire 1 hour (1h) after you log in.
+> **Important**: By default, when registering a new user, the user is assigned a regular role with role_id (2).
