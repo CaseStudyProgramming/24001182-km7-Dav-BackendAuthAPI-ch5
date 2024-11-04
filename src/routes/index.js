@@ -11,15 +11,16 @@ const routeOptions = require("./routeOptions");
 const routeCarOptions = require("./routeCarOptions");
 const routeTransmission = require("./routeTransmission");
 const authMiddleware = require("../middlewares/authMiddleware");
-const authorize = require("../middlewares/authorize"); // Tambahkan ini
+const authorize = require("../middlewares/authorize");
 const authController = require("../controllers/auth");
+const authRoutes = require("./authRoutes");
 
 const router = express.Router();
 
 // Route untuk autentikasi
 router.post("/auth/register", authController.register);
 router.post("/auth/login", authController.login);
-
+router.use("/auth", authRoutes);
 // Middleware untuk melindungi route berikutnya (akses hanya dengan token yang valid)
 router.use(authMiddleware.authenticate);
 
