@@ -28,7 +28,7 @@ router.use("/type", authorize, routesType);
 router.use("/manufacture", authorize, routesManufacture);
 router.use("/model", authorize, routesModel);
 
-router.use("/cars", routesCars);
+router.use("/cars", authorize, routesCars);
 router.use("/carspecs", authorize, routesCarSpecs);
 router.use("/specs", authorize, routesSpecs);
 
