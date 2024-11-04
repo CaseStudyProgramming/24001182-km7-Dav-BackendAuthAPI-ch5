@@ -3,7 +3,13 @@
 const authorize = (req, res, next) => {
   const user = req.user;
 
-  // Perbolehkan semua pengguna untuk mengakses GET
+  if (!user) {
+    return res.status(401).json({
+      message: "anda harus login dulu.",
+    });
+  }
+
+  // Izinkan semua pengguna yang login untuk mengakses GET
   if (req.method === "GET") {
     return next();
   }
