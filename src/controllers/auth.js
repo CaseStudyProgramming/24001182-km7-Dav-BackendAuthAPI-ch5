@@ -124,3 +124,40 @@ exports.login = async (req, res) => {
     return res.status(500).json({ message: "An error occurred during login." });
   }
 };
+
+// Get Profile
+exports.getProfile = async (req, res) => {
+  try {
+    const userId = req.user.id; // User ID
+    const user = await prisma.users.findUnique({
+      where: { id: BigInt(userId) },
+      select: {
+        id: true,
+        name: true,
+        email: true,
+        profile_picture: true,
+        role_id: true,
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+
+    // Convert id to string to ensure consistency in JSONbig.stringify response
+    user.id = user.id.toString();
+
+    res.setHeader("Content-Type", "application/json");
+    res.send(
+      JSONbig.stringify({
+        message: "Profile retrieved successfully",
+        user,
+      })
+    );
+  } catch (error) {
+    console.error("Error retrieving profile:", error.message);
+    return res
+      .status(500)
+      .json({ message: "An error occurred while retrieving the profile." });
+  }
+};
