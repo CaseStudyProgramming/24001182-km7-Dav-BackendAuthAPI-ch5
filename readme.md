@@ -13,11 +13,11 @@ This is a car auth API developed with Express.js, Prisma ORM, and PostgreSQL.
 
 ### 🔑 Admin Access
 - **Role_id**: 1 (Admin)
-- **Email**: `test1@gmail.com`
+- **Email**: `test1@email.com`
 - **Password**: `12345678`
 
 ### 👤 User Access
-- **Email**: `user99@gmail.com`
+- **Email**: `user99@email.com`
 - **Password**: `12345678`
 
 ## ⚠️ Warning ⚠️
