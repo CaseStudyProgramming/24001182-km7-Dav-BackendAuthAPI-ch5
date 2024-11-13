@@ -8,11 +8,18 @@ This is a car auth API developed with Express.js, Prisma ORM, and PostgreSQL.
 ## Project Links
 - **Postman Documentation**: [API Docs](https://documenter.getpostman.com/view/30704956/2sAY4uCPEK)
 
-## Account
+
+## 📂 Account Information
+
+### 🔑 Admin Access
 - **Role_id**: 1 (Admin)
-- **Email**: test1@email.com
-- **Password**: 12345678
+- **Email**: `test1@gmail.com`
+- **Password**: `12345678`
+
+### 👤 User Access
+- **Email**: `user99@gmail.com`
+- **Password**: `12345678`
 
 ## ⚠️ Warning ⚠️
-> **Important**: As an admin, please note that the access token will expire 1 hour (1h) after you log in.
-> **Important**: By default, when registering a new user, the user is assigned a regular role with role_id (2).
+- **Important**: As an admin, please note that the access token will expire 1 hour (1h) after you log in.
+- **Important**: By default, when registering a new user, the user is assigned a regular role with role_id (2).
